@@ -3,6 +3,7 @@ package com.example.estudiante.ejemploiniciaractividadparaunresultado;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -25,6 +26,26 @@ public class UserFormActivity extends AppCompatActivity {
         edtUserFormUserName = findViewById(R.id.edt_userform_username);
 
         btnUserFormFinish= findViewById(R.id.btn_finish_userform);
+
+        btnUserFormFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent respuesta = new Intent();
+              String name=  edtUserFormName.getText().toString() ;
+               String email= edtUserFormEmail.getText().toString() ;
+             String username=   edtUserFormUserName.getText().toString() ;
+
+
+
+             respuesta.putExtra( "name", name) ;
+             respuesta.putExtra("email",email);
+             respuesta.putExtra("username",username);
+
+
+             setResult(Constans.RESP_NEW_USER,respuesta);
+             finish();
+            }
+        });
 
     }
 }
